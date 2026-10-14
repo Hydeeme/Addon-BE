@@ -207,6 +207,16 @@ public final class ResourcePackGenerator {
         String slug = slug(spec.getId());
         String texKey = textureByBase.getOrDefault(slug,
                 textureByBase.getOrDefault(slug.replace("_", ""), null));
+        if (texKey == null && !spec.getIconTexture().isEmpty()) {
+            // Bedrock icon texture reference (minecraft:icon) matched against
+            // shipped textures by base filename, so declared icons resolve.
+            String iconBase = spec.getIconTexture().toLowerCase(Locale.ROOT);
+            int slash = Math.max(iconBase.lastIndexOf('/'), iconBase.lastIndexOf(':'));
+            if (slash >= 0) iconBase = iconBase.substring(slash + 1);
+            if (iconBase.contains(".")) iconBase = iconBase.substring(0, iconBase.lastIndexOf('.'));
+            texKey = textureByBase.get(iconBase);
+            if (texKey == null) texKey = textureByBase.get(iconBase.replace("_", ""));
+        }
         if (texKey == null) {
             // No matching texture: still emit an override so the item has a stable CMD slot.
             texKey = "item/iron_sword";

@@ -42,6 +42,7 @@ public final class ComponentRegistry {
         full("minecraft:cooldown", "Applied with player setCooldown.");
         full("minecraft:rarity", "Stored in display metadata.");
         full("minecraft:tags", "Stored as namespaced tags.");
+        full("minecraft:display_name", "Applied as the item name.");
         partial("minecraft:use_animation", "Approximated with arm swing / consumption effects.");
         partial("minecraft:enchantable", "Mapped to allowed enchant list where possible.");
         // Blocks

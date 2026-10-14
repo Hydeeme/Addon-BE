@@ -86,6 +86,7 @@ public final class FunctionDispatcher {
                 case "execute":
                 case "setblock":
                 case "fill":
+                case "clone":
                 case "spreadplayers":
                     Bukkit.dispatchCommand(sender, translated.replaceFirst("(?i)^minecraft:", ""));
                     break;
