@@ -29,8 +29,25 @@ Use /addon report fantasy-rpg
 ```
 
 `report` prints the full detail list (component, level, file, line).
-`analyze` prints the per-category summary. Machine-readable `report.json`
-and `report.html` are written into the add-on folder.
+`analyze` prints the per-category summary plus the per-file breakdown —
+every mob/item/block/function file scores on its own, so one dinosaur
+mob shows its own convert percentage:
+
+```
+/addon analyze dino-pack
+# Compatibility: Dino Pack — 80% (GOOD)
+# 77% Entities: 4 full, 2 partial, 1 unsupported
+# 100% Items: 1 full, 0 partial, 0 unsupported
+#  68% entities/t_rex.json
+# 100% entities/raptor.json
+
+/addon analyze dino-pack t_rex     # filter to one mob/file
+```
+
+With more than 15 files, chat shows the 10 weakest files and points to
+the full table; `report.json` carries `categoryScores` + `fileScores`
+maps and `report.html` renders both tables with bars. Machine-readable
+`report.json` and `report.html` are written into the add-on folder.
 
 ## Enabling
 

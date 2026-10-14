@@ -11,6 +11,9 @@ AddonEntitySpec robot = api.getEntity("my-addon", "my_addon:robot");
 AddonItemSpec laser = api.getItem("my-addon", "myaddon:laser_sword");
 AddonBlockSpec ore = api.getBlock("my-addon", "myaddon:spark_ore");
 double score = api.compatibilityScore("my-addon");
+java.util.Map<String, Double> byCategory = api.categoryScores("my-addon"); // Entities -> 77.0, Items -> 100.0, ...
+java.util.Map<String, Double> byFile = api.fileScores("my-addon");         // entities/t_rex.json -> 68.0, ...
+double trex = api.fileScore("my-addon", "entities/t_rex.json");            // one mob/file on its own
 for (Addon a : api.getAddons()) { /* ... */ }
 ```
 

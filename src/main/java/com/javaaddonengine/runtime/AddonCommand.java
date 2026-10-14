@@ -198,18 +198,70 @@ public final class AddonCommand implements CommandExecutor, TabCompleter {
             send(sender, "&cNo report available for &f" + a.getId());
             return true;
         }
-        send(sender, "&bCompatibility: &f" + a.getName() + " &7— &a" + String.format("%.0f%%", r.score())
-                + " &7(" + r.grade() + ")");
+        send(sender, "&bCompatibility: &f" + a.getName() + " &7— " + colorFor(r.score())
+                + String.format("%.0f%%", r.score()) + " &7(" + r.grade() + ")");
         for (Map.Entry<String, java.util.EnumMap<CompatibilityLevel, Integer>> cat
                 : r.getCategories().entrySet()) {
             java.util.EnumMap<CompatibilityLevel, Integer> c = cat.getValue();
-            send(sender, "&7" + cat.getKey() + ": &a" + c.getOrDefault(CompatibilityLevel.FULL, 0)
+            double pct = r.categoryScore(cat.getKey());
+            send(sender, colorFor(pct) + String.format("%3.0f%%", pct) + " &7" + cat.getKey()
+                    + ": &a" + c.getOrDefault(CompatibilityLevel.FULL, 0)
                     + " &efull&7, &e" + (c.getOrDefault(CompatibilityLevel.PARTIAL, 0)
                     + c.getOrDefault(CompatibilityLevel.EMULATED, 0)
                     + c.getOrDefault(CompatibilityLevel.FALLBACK, 0))
                     + " &epartial&7, &c" + c.getOrDefault(CompatibilityLevel.UNSUPPORTED, 0) + " &eunsupported");
         }
+        // Per-file / per-mob breakdown. Each entity/item/block/function file
+        // (e.g. entities/t_rex.json) scores on its own entries, so a dinosaur
+        // mob shows its own convert percentage.
+        Map<String, Double> files = r.fileScores();
+        if (!files.isEmpty()) {
+            if (args.length >= 3) {
+                String filter = args[2].toLowerCase(Locale.ROOT);
+                int shown = 0;
+                for (Map.Entry<String, Double> en : files.entrySet()) {
+                    if (!en.getKey().toLowerCase(Locale.ROOT).contains(filter)) continue;
+                    java.util.EnumMap<CompatibilityLevel, Integer> fc = r.fileCounts(en.getKey());
+                    send(sender, colorFor(en.getValue()) + String.format("%3.0f%%", en.getValue())
+                            + " &7" + en.getKey()
+                            + " &8(F:" + fc.getOrDefault(CompatibilityLevel.FULL, 0)
+                            + " P:" + (fc.getOrDefault(CompatibilityLevel.PARTIAL, 0)
+                            + fc.getOrDefault(CompatibilityLevel.EMULATED, 0)
+                            + fc.getOrDefault(CompatibilityLevel.FALLBACK, 0))
+                            + " U:" + fc.getOrDefault(CompatibilityLevel.UNSUPPORTED, 0) + ")");
+                    if (++shown >= 20) break;
+                }
+                if (shown == 0) {
+                    send(sender, "&7No files match filter &f" + args[2]
+                            + "&7. Use &f/addon analyze " + a.getId() + " &7without filter to list all files.");
+                }
+            } else if (files.size() <= 15) {
+                for (Map.Entry<String, Double> en : files.entrySet()) {
+                    send(sender, colorFor(en.getValue()) + String.format("%3.0f%%", en.getValue())
+                            + " &7" + en.getKey());
+                }
+            } else {
+                // Too many files for chat: show weakest 10 (most useful) + hint.
+                List<Map.Entry<String, Double>> sorted = new ArrayList<>(files.entrySet());
+                sorted.sort(Map.Entry.comparingByValue());
+                send(sender, "&7Per-file scores (" + files.size() + " files, weakest 10):");
+                for (int i = 0; i < Math.min(10, sorted.size()); i++) {
+                    Map.Entry<String, Double> en = sorted.get(i);
+                    send(sender, colorFor(en.getValue()) + String.format("%3.0f%%", en.getValue())
+                            + " &7" + en.getKey());
+                }
+                send(sender, "&7Filter one mob/file: &f/addon analyze " + a.getId() + " <nama>");
+                send(sender, "&7Full per-file table: &f/addon report " + a.getId() + " &7(report.txt/html)");
+            }
+        }
         return true;
+    }
+
+    private static String colorFor(double pct) {
+        if (pct >= 75) return "&a";
+        if (pct >= 50) return "&e";
+        if (pct >= 25) return "&6";
+        return "&c";
     }
 
     private boolean report(CommandSender sender, String[] args) {

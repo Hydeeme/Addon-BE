@@ -67,4 +67,24 @@ public final class ApiImpl implements JavaAddonEngineAPI {
         Addon a = addons.get(addonId);
         return a == null || a.getReport() == null ? 0.0 : a.getReport().score();
     }
+
+    @Override
+    public java.util.Map<String, Double> categoryScores(String addonId) {
+        Addon a = addons.get(addonId);
+        return a == null || a.getReport() == null
+                ? java.util.Collections.emptyMap() : a.getReport().categoryScores();
+    }
+
+    @Override
+    public java.util.Map<String, Double> fileScores(String addonId) {
+        Addon a = addons.get(addonId);
+        return a == null || a.getReport() == null
+                ? java.util.Collections.emptyMap() : a.getReport().fileScores();
+    }
+
+    @Override
+    public double fileScore(String addonId, String file) {
+        Addon a = addons.get(addonId);
+        return a == null || a.getReport() == null ? 0.0 : a.getReport().fileScore(file);
+    }
 }
