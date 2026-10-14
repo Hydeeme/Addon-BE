@@ -1,0 +1,15 @@
+{
+  "id": "golem_keeper",
+  "name": "Golem Keeper",
+  "dialogue": [
+    "Welcome, traveler.",
+    "The forge burns day and night."
+  ],
+  "commands": ["give {player} minecraft:iron_ingot 4"],
+  "shop": {
+    "minecraft:iron_ingot": 10,
+    "minecraft:coal": 3
+  },
+  "permission": "",
+  "cooldown_seconds": 5
+}

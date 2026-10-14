@@ -1,0 +1,16 @@
+# Compatibility registry. Maps Bedrock component ids to support levels.
+# Levels: FULL, PARTIAL, EMULATED, FALLBACK, UNSUPPORTED
+components:
+  "minecraft:health": FULL
+  "minecraft:movement": FULL
+  "minecraft:attack": EMULATED
+  "minecraft:collision_box": PARTIAL
+  "minecraft:physics": EMULATED
+  "minecraft:type_family": FULL
+  "minecraft:damage_sensor": PARTIAL
+  "minecraft:loot": FULL
+  "minecraft:experience_reward": FULL
+  "minecraft:scale": FULL
+  "minecraft:follow_range": EMULATED
+  "minecraft:knockback_resistance": FULL
+  "minecraft:movement.basic": FULL

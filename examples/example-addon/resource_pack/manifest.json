@@ -1,0 +1,16 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "JAE Example Resource Pack",
+    "description": "Textures, sounds and particles for the example behavior pack.",
+    "uuid": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+    "version": [1, 0, 0]
+  },
+  "modules": [
+    {
+      "type": "resources",
+      "uuid": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeef",
+      "version": [1, 0, 0]
+    }
+  ]
+}

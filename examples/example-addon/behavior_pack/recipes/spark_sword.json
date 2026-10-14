@@ -1,0 +1,11 @@
+{
+  "minecraft:recipe_shaped": {
+    "tags": ["crafting_table"],
+    "pattern": [" S ", " S ", " I "],
+    "key": {
+      "S": { "item": "jae_example:spark_shard" },
+      "I": { "item": "minecraft:iron_ingot" }
+    },
+    "result": { "item": "jae_example:spark_sword", "count": 1 }
+  }
+}

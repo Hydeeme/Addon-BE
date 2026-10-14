@@ -1,0 +1,14 @@
+{
+  "particle_effect": {
+    "description": {
+      "identifier": "jae_example:spark_burst",
+      "basic_render_parameters": { "material": "particles_alpha", "texture": "spark_burst" }
+    },
+    "components": {
+      "minecraft:emitter_rate_instant": { "num_particles": 12 },
+      "minecraft:emitter_lifetime_once": { "active_time": 1 },
+      "minecraft:particle_lifetime_expression": {},
+      "minecraft:particle_initial_speed": [0, 2, 0]
+    }
+  }
+}

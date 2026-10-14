@@ -1,0 +1,36 @@
+name: JavaAddonEngine
+version: 1.0.0
+main: com.javaaddonengine.JavaAddonEnginePlugin
+api-version: "1.13"
+author: JavaAddonEngine
+description: Import and run Minecraft Bedrock Add-Ons on Spigot/Paper via a compatibility engine.
+website: https://github.com/example/JavaAddonEngine
+
+commands:
+  addon:
+    description: Manage Bedrock Add-Ons on this Java server.
+    usage: /addon <list|import|analyze|enable|disable|reload|remove|report|resourcepack|give|summon|function|npc|block|debug|status>
+    aliases: [addons, jae]
+    permission: javaaddonengine.use
+
+permissions:
+  javaaddonengine.use:
+    description: Basic usage of /addon list and status.
+    default: true
+  javaaddonengine.import:
+    description: Import Bedrock Add-On packages.
+    default: op
+  javaaddonengine.manage:
+    description: Enable, disable, reload and remove Add-Ons.
+    default: op
+  javaaddonengine.debug:
+    description: Access debug diagnostics.
+    default: op
+  javaaddonengine.admin:
+    description: Full access to all JavaAddonEngine features.
+    default: op
+    children:
+      javaaddonengine.use: true
+      javaaddonengine.import: true
+      javaaddonengine.manage: true
+      javaaddonengine.debug: true

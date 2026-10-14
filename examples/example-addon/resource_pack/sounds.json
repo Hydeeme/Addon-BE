@@ -1,0 +1,8 @@
+{
+  "sound_definitions": {
+    "spark_strike": {
+      "category": "hostile",
+      "sounds": ["sounds/spark_strike"]
+    }
+  }
+}

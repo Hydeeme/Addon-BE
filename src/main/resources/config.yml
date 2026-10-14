@@ -1,0 +1,53 @@
+engine:
+  mode: AUTO
+  strict: false
+  debug: false
+
+addons:
+  auto-load: true
+  auto-import: false
+
+resource-pack:
+  enabled: true
+  auto-generate: true
+  auto-send: false
+  required: false
+  url: ""
+  sha1: ""
+  http:
+    enabled: false
+    host: "127.0.0.1"
+    port: 0
+
+blocks:
+  rendering-mode: AUTO
+
+npc:
+  provider: INTERNAL
+
+economy:
+  provider: AUTO
+
+integrations:
+  vault: AUTO
+  citizens: AUTO
+  model-engine: AUTO
+  placeholderapi: AUTO
+  protocollib: AUTO
+  mythicmobs: AUTO
+  worldguard: AUTO
+
+compatibility:
+  unsupported-feature-action: WARN
+
+security:
+  max-addon-size-mb: 500
+  max-files: 10000
+  max-file-size-mb: 50
+
+storage:
+  type: SQLITE
+  jdbc-url: ""
+
+messages:
+  prefix: "&b[JavaAddonEngine] &r"

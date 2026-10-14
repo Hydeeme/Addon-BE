@@ -1,0 +1,15 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:block": {
+    "description": {
+      "identifier": "jae_example:spark_ore"
+    },
+    "components": {
+      "minecraft:hardness": { "value": 3.5 },
+      "minecraft:resistance": { "value": 6.0 },
+      "minecraft:light": { "emission": 9 },
+      "minecraft:loot": { "table": "spark_ore_loot" },
+      "minecraft:tags": { "tags": ["ore"] }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "minecraft:npc_dialogue": {
+    "scenes": [
+      {
+        "scene_tag": "greeting",
+        "npc_name": "Golem Keeper",
+        "text": [
+          "Welcome, traveler. The clockwork golem guards this hall.",
+          "Prove yourself, and you may wield a spark sword."
+        ],
+        "buttons": [
+          {
+            "name": "Take trial",
+            "commands": ["give @p jae_example:spark_sword 1"]
+          },
+          {
+            "name": "Summon golem",
+            "commands": ["summon jae_example:clockwork_golem ~ ~1 ~"]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "jae_example:clockwork_golem",
+      "is_spawnable": true,
+      "is_summonable": true,
+      "properties": {
+        "jae:charged": {
+          "type": "bool",
+          "client_sync": true
+        }
+      },
+      "geometry": "geometry.clockwork_golem"
+    },
+    "component_groups": {
+      "jae:charged_mode": {
+        "minecraft:attack": { "damage": 16 },
+        "minecraft:movement": { "value": 0.34 }
+      }
+    },
+    "components": {
+      "minecraft:health": { "value": 80, "max": 80 },
+      "minecraft:movement": { "value": 0.28 },
+      "minecraft:attack": { "damage": 9 },
+      "minecraft:scale": { "value": 1.2 },
+      "minecraft:follow_range": { "value": 24 },
+      "minecraft:knockback_resistance": { "value": 0.6 },
+      "minecraft:type_family": { "family": ["golem", "monster"] },
+      "minecraft:loot": { "table": "clockwork_golem_loot" },
+      "minecraft:experience_reward": { "value": 15 },
+      "minecraft:collision_box": { "width": 1.2, "height": 2.4 },
+      "minecraft:damage_sensor": {
+        "triggers": [
+          { "damage_modifier": 0.5, "damage_filters": { "test": "is_family", "subject": "other", "value": "golem" } }
+        ]
+      },
+      "minecraft:behavior.melee_attack": { "priority": 2 },
+      "minecraft:behavior.random_stroll": { "priority": 6 },
+      "minecraft:behavior.look_at_player": { "priority": 7 }
+    },
+    "events": {
+      "jae:charge": {
+        "add": { "component_groups": ["jae:charged_mode"] }
+      }
+    }
+  }
+}

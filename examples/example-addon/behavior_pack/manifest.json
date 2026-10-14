@@ -1,0 +1,18 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "JAE Example Behavior Pack",
+    "description": "Demonstrates a custom item, entity, recipe, loot table, NPC hook and function.",
+    "uuid": "11111111-2222-3333-4444-555555555555",
+    "version": [1, 0, 0],
+    "min_engine_version": [1, 20, 0]
+  },
+  "modules": [
+    {
+      "type": "data",
+      "uuid": "11111111-2222-3333-4444-555555555556",
+      "version": [1, 0, 0]
+    }
+  ],
+  "dependencies": []
+}
